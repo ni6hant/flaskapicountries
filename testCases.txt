@@ -1,0 +1,27 @@
+1. API to return all the countries
+curl --location 'https://9978-2405-201-a40f-60ad-e45f-763b-8f3d-ed04.ngrok-free.app/country'
+
+2. API to get a country detail
+curl --location 'https://9978-2405-201-a40f-60ad-e45f-763b-8f3d-ed04.ngrok-free.app/country/77'
+
+3. API to get country neighnbours
+curl --location 'https://9978-2405-201-a40f-60ad-e45f-763b-8f3d-ed04.ngrok-free.app/country/77/neighbour'
+
+4. API to get countries in sorted order
+curl --location 'https://9978-2405-201-a40f-60ad-e45f-763b-8f3d-ed04.ngrok-free.app/country?sort_by=a_to_z'
+
+5. API to get countries in paginated list
+curl --location 'https://9978-2405-201-a40f-60ad-e45f-763b-8f3d-ed04.ngrok-free.app/country?sort_by=a_toz&page=1&limit=10'
+
+6. API to search a countries by:
+Name
+curl --location 'https://9978-2405-201-a40f-60ad-e45f-763b-8f3d-ed04.ngrok-free.app/country?sort_by=a_toz&page=1&limit=10&name=united'
+
+Region
+curl --location 'https://9978-2405-201-a40f-60ad-e45f-763b-8f3d-ed04.ngrok-free.app/country?sort_by=a_toz&page=1&limit=10&region=asia'
+
+Subregion
+curl --location 'https://9978-2405-201-a40f-60ad-e45f-763b-8f3d-ed04.ngrok-free.app/country?sort_by=a_toz&page=1&limit=10&subregion=Central'
+
+All:
+curl --location 'https://9978-2405-201-a40f-60ad-e45f-763b-8f3d-ed04.ngrok-free.app/country?sort_by=a_toz&page=1&limit=10&name=united&region=america&subregion=Caribbean'

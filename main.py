@@ -5,6 +5,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 import requests
 from sqlalchemy.orm import Session
+from sqlalchemy_pagination import paginate
+from sqlalchemy_pagination import paginate as paginate_query
 
 # Create the FastAPI instance
 app = FastAPI()
@@ -234,3 +236,8 @@ def get_country_detail(country_id: int, db: Session = Depends(get_db)):
         })
 
     return response
+
+
+if __name__ == '__main__':
+    import uvicorn
+    uvicorn.run(app, host='127.0.0.1', port=8000)
