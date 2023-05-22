@@ -1,10 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from sqlalchemy import create_engine, Column, Integer, String, BigInteger, DateTime, ForeignKey
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 import requests
-from sqlalchemy.orm import Session, Depends
+from sqlalchemy.orm import Session
 
 # Create the FastAPI instance
 app = FastAPI()
@@ -128,6 +128,7 @@ def get_all_countries(
     subregion: str = None,
     db: Session = Depends(get_db)
 ):
+    db = SessionLocal()
     query = db.query(Country)
 
     if name:
@@ -181,6 +182,7 @@ def get_all_countries(
     }
 
     return response
+    db.close()
 
 # API to get a country detail
 @app.get('/country/{country_id}')
