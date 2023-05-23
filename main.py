@@ -7,14 +7,11 @@ from datetime import datetime
 
 app = FastAPI()
 
-Base = declarative_base()
-
-# Define your database URL and create an engine
+# Define database URL and create an engine
 DATABASE_URL = 'postgresql://flaskbloguser:WKNXpBOtYpcvtWBOpjMPFOAe1IgGuWWm@dpg-chgr2367avjbbjpntevg-a.oregon-postgres.render.com/flaskblogdb'
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
-
 
 # Country Model
 class Country(Base):
@@ -35,6 +32,7 @@ class Country(Base):
     updated_at = Column(DateTime)
     neighbours = relationship('CountryNeighbours', backref='country', foreign_keys='CountryNeighbours.country_id')
 
+#CountryNeighbours Model
 class CountryNeighbours(Base):
     __tablename__ = 'country_neighbours'
     id = Column(Integer, primary_key=True)
@@ -43,7 +41,7 @@ class CountryNeighbours(Base):
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
 
-
+# Get Database function
 def get_db():
     db = SessionLocal()
     try:
@@ -239,8 +237,6 @@ async def get_country_neighbours(country_id: int, db: Session = Depends(get_db))
 
     return response
 
-
-
 if __name__ == '__main__':
     import uvicorn
-    uvicorn.run(app, host='0.0.0.0', port=5000)
+    uvicorn.run(app, host='127.0.0.1', port=5000)
